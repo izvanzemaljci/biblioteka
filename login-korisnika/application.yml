@@ -1,0 +1,6 @@
+spring:     
+  data: 
+      mongodb: 
+          uri: mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority
+server: 
+  port: 3025
