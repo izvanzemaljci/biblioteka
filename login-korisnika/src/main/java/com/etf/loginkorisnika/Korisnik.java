@@ -1,9 +1,12 @@
 package com.etf.loginkorisnika;
 
-@Data
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Document(collection="login-korisnika")
 public class Korisnik {
 
+    @Id
     public String id;
     public String username;
     public String password;
