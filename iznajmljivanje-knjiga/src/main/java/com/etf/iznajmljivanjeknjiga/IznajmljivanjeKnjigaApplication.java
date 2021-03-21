@@ -1,12 +1,13 @@
 package com.etf.iznajmljivanjeknjiga;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -24,10 +25,12 @@ public class IznajmljivanjeKnjigaApplication {
 				 "mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority");
 		 MongoDatabase database = mongoClient.getDatabase("biblioteka");
 		MongoCollection<Document> collection = database.getCollection("login-korisnika");
+		Korisnik k2 = new Korisnik("2", "almasa", "123", "korisnik");
 		
-		Document k3 = new Document("_id",new ObjectId());
-		k3.append("id", "4").append("username", "irma").append("password", "123").append("role", "korisnik") ;
-		collection.insertOne(k3);
+		ObjectMapper oMapper = new ObjectMapper();
+	    Document user= new Document( oMapper.convertValue(k2, Map.class));
+		collection.insertOne(user);
+		
 		MongoCursor<Document> doc=collection.find().iterator() ;   
 		while(doc.hasNext()) {
 	    	ArrayList<Object> var=new ArrayList<>(doc.next().values());
