@@ -9,6 +9,9 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.etf.iznajmljivanjeknjiga.Iznajmljivanje;
+import com.etf.iznajmljivanjeknjiga.KopijaKnjige;
+import com.etf.iznajmljivanjeknjiga.Review;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
