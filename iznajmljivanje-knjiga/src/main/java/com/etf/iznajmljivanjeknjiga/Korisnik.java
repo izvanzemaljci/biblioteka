@@ -3,7 +3,7 @@ package com.etf.iznajmljivanjeknjiga;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="login-korisnika")
+@Document(collection="iznajmljivanje-knjiga")
 public class Korisnik {
 
     @Id

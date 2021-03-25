@@ -24,7 +24,7 @@ public class IznajmljivanjeKnjigaApplication {
 		MongoClient mongoClient =  MongoClients.create(
 				 "mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority");
 		 MongoDatabase database = mongoClient.getDatabase("biblioteka");
-		MongoCollection<Document> collection = database.getCollection("login-korisnika");
+		MongoCollection<Document> collection = database.getCollection("iznajmljivanje-knjiga");
 		Korisnik k2 = new Korisnik("2", "almasa", "123", "korisnik");
 		
 		ObjectMapper oMapper = new ObjectMapper();

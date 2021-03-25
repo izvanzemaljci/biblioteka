@@ -1,38 +1,44 @@
 package com.etf.loginkorisnika;
 
 import java.util.*;
+
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+
 @SpringBootApplication
-public class LoginKorisnikaApplication implements CommandLineRunner{
+public class LoginKorisnikaApplication {
 
 	@Autowired
-	private KorisnikRepository korisnikRepository;
+	public static MongoDatabase database;
 
 	public static void main(String[] args) {
-		SpringApplication.run(LoginKorisnikaApplication.class, args);
-	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		Korisnik k1 = new Korisnik("1", "sanja", "123", "korisnik");
+		MongoClient mongoClient = MongoClients.create(
+				"mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority");
+		MongoDatabase database = mongoClient.getDatabase("biblioteka");
+		MongoCollection<Document> collection = database.getCollection("login-korisnika");
 		Korisnik k2 = new Korisnik("2", "almasa", "123", "korisnik");
-		Korisnik k3 = new Korisnik("3", "irma", "123", "korisnik");
-		Korisnik k4 = new Korisnik("4", "sara", "123", "korisnik");
 
-		korisnikRepository.save(k1);
-		korisnikRepository.save(k2);
-		korisnikRepository.save(k3);
-		korisnikRepository.save(k4);
+		ObjectMapper oMapper = new ObjectMapper();
+		Document user = new Document(oMapper.convertValue(k2, Map.class));
+		collection.insertOne(user);
 
-		List<Korisnik> korisnici = korisnikRepository.findAll();
-
-		for(Korisnik k : korisnici) {
-			System.out.println(k.toString());
+		MongoCursor<Document> doc = collection.find().iterator();
+		while (doc.hasNext()) {
+			ArrayList<Object> var = new ArrayList<>(doc.next().values());
+			System.out.println(var.get(0));
+			System.out.println(var.get(1));
+			System.out.println(var.get(2));
+			System.out.println(var.get(3));
 		}
 	}
-
 }
