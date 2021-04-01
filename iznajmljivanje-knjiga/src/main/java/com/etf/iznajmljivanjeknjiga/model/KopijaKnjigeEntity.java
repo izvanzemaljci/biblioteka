@@ -1,6 +1,6 @@
 package com.etf.iznajmljivanjeknjiga.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 
@@ -10,20 +10,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
 @Document(collection = "kopija-knjige")
-public class KopijaKnjige {
+public class KopijaKnjigeEntity {
 
 	@Id
 	private ObjectId objectId;
 	private Long id;
 	private Long idKnjige;
 	private String izdavac;
-	private LocalDateTime datumIzdavanja;
+	private LocalDate datumIzdavanja;
 
-	public KopijaKnjige() {
+	public KopijaKnjigeEntity() {
 		super();
 	}
 
-	public KopijaKnjige(Long id, Long idKnjige, String izdavac, LocalDateTime datumIzdavanja) {
+	public KopijaKnjigeEntity(Long id, Long idKnjige, String izdavac, LocalDate datumIzdavanja) {
 		super();
 		this.id = id;
 		this.idKnjige = idKnjige;
@@ -31,7 +31,7 @@ public class KopijaKnjige {
 		this.datumIzdavanja = datumIzdavanja;
 	}
 
-	public KopijaKnjige(Long idKnjige, String izdavac, LocalDateTime datumIzdavanja) {
+	public KopijaKnjigeEntity(Long idKnjige, String izdavac, LocalDate datumIzdavanja) {
 		super();
 		this.idKnjige = idKnjige;
 		this.izdavac = izdavac;
@@ -62,11 +62,11 @@ public class KopijaKnjige {
 		this.izdavac = izdavac;
 	}
 
-	public LocalDateTime getDatumIzdavanja() {
+	public LocalDate getDatumIzdavanja() {
 		return datumIzdavanja;
 	}
 
-	public void setDatumIzdavanja(LocalDateTime datumIzdavanja) {
+	public void setDatumIzdavanja(LocalDate datumIzdavanja) {
 		this.datumIzdavanja = datumIzdavanja;
 	}
 

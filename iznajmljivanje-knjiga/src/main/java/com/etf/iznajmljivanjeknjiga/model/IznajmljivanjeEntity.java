@@ -1,32 +1,43 @@
 package com.etf.iznajmljivanjeknjiga.model;
 
+import java.time.LocalDate;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "iznajmljivanje-knjiga")
-public class Iznajmljivanje {
-
+public class IznajmljivanjeEntity {
 	@Id
 	private ObjectId objectId;
 	private Long id;
 	private Long idKorisnika;
 	private Long idKopijaKnjige;
-	private String datumIznajmljivanja;
+	private LocalDate datumIznajmljivanja;
 	private Long idUposlenika;
 	private Double platiti;
 
-	public Iznajmljivanje() {
+	public IznajmljivanjeEntity() {
 		super();
 	}
 
-	public Iznajmljivanje(Long id, Long idKorisnika, Long idKopijaKnjige, String datumIznajmljivanja, Long idUposlenika,
-			Double platiti) {
+	public IznajmljivanjeEntity(Long id, Long idKorisnika, Long idKopijaKnjige, String datumIznajmljivanja,
+			Long idUposlenika, Double platiti) {
 		super();
 		this.id = id;
 		this.idKorisnika = idKorisnika;
 		this.idKopijaKnjige = idKopijaKnjige;
-		this.datumIznajmljivanja = datumIznajmljivanja;
+		this.datumIznajmljivanja = LocalDate.parse(datumIznajmljivanja);
+		this.idUposlenika = idUposlenika;
+		this.platiti = platiti;
+	}
+
+	public IznajmljivanjeEntity(Long idKorisnika, Long idKopijaKnjige, String datumIznajmljivanja, Long idUposlenika,
+			Double platiti) {
+		super();
+		this.idKorisnika = idKorisnika;
+		this.idKopijaKnjige = idKopijaKnjige;
+		this.datumIznajmljivanja = LocalDate.parse(datumIznajmljivanja);
 		this.idUposlenika = idUposlenika;
 		this.platiti = platiti;
 	}
@@ -55,11 +66,11 @@ public class Iznajmljivanje {
 		this.idKopijaKnjige = idKopijaKnjige;
 	}
 
-	public String getDatumIznajmljivanja() {
+	public LocalDate getDatumIznajmljivanja() {
 		return datumIznajmljivanja;
 	}
 
-	public void setDatumIznajmljivanja(String datumIznajmljivanja) {
+	public void setDatumIznajmljivanja(LocalDate datumIznajmljivanja) {
 		this.datumIznajmljivanja = datumIznajmljivanja;
 	}
 

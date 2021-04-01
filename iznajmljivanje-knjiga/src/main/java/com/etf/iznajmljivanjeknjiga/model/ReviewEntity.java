@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
 @Document(collection = "review")
-public class Review {
+public class ReviewEntity {
 
 	@Id
 	private ObjectId objectId;
@@ -16,14 +16,14 @@ public class Review {
 	private Long idIznajmljivanja;
 	private Double ocjena;
 
-	public Review(Long id, Long idIznajmljivanja, Double ocjena) {
+	public ReviewEntity(Long id, Long idIznajmljivanja, Double ocjena) {
 		super();
 		this.id = id;
 		this.idIznajmljivanja = idIznajmljivanja;
 		this.ocjena = ocjena;
 	}
 
-	public Review() {
+	public ReviewEntity() {
 		super();
 	}
 

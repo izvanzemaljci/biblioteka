@@ -5,15 +5,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.etf.iznajmljivanjeknjiga.repository.IznajmljivanjeKnjigaRepository;
 import com.mongodb.client.MongoDatabase;
 
 @SpringBootApplication
 public class IznajmljivanjeKnjigaApplication implements CommandLineRunner {
 	@Autowired
 	public static MongoDatabase database;
-	@Autowired
-	private IznajmljivanjeKnjigaRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(IznajmljivanjeKnjigaApplication.class, args);
