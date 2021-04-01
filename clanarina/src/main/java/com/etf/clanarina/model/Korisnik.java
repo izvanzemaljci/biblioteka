@@ -1,15 +1,36 @@
-package com.etf.clanarina;
+package com.etf.clanarina.model;
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Entity
+@Document(collection = "korisnik")
 
 public class Korisnik {
 	
 	 	@Id
+	 	private ObjectId objectId;
+	 	
+	 	@GeneratedValue(strategy = GenerationType.AUTO)
 	    public Long id;
+	 	
+		@NotNull(message = "Ime can't be null")
 	    public String ime;
+		
+		@NotNull(message = "Prezime can't be null")
 	    public String prezime;
+		
+		@NotNull(message = "DatumRodjenja can't be null")
 	    public LocalDateTime datumRodjenja;
+		
+		@NotNull(message = "IdUser can't be null")
 	    public Long idUser;
 
 	    public Korisnik() {
@@ -44,6 +65,10 @@ public class Korisnik {
 	    public String getPrezime() {
 	        return prezime;
 	    }
+	    public void setPrezime(String prezime) {
+	        this.prezime = prezime;
+	    }
+
 
 	    public void setPassword(String prezime) {
 	        this.prezime = prezime;

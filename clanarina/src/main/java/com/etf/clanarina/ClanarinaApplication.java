@@ -1,29 +1,24 @@
 package com.etf.clanarina;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.etf.clanarina.Clanarina;
-import com.etf.clanarina.Korisnik;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+
+import com.etf.clanarina.repository.ClanarinaRepository;
 
 @SpringBootApplication
 public class ClanarinaApplication {
 	@Autowired
 	public static MongoDatabase database;
+	@Autowired
+	private ClanarinaRepository repository;
 
 	public static void main(String[] args) {
+		SpringApplication.run(ClanarinaApplication.class, args);
+		
+		/*
 		MongoClient mongoClient =  MongoClients.create("mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority");
 		MongoDatabase database = mongoClient.getDatabase("biblioteka");
 		MongoCollection<Document> connectionClanarina = database.getCollection("clanarina");
@@ -59,13 +54,14 @@ public class ClanarinaApplication {
 		while(korisnik.hasNext()) {
 			ArrayList<Object> var =new ArrayList<> (korisnik.next().values());
 			System.out.println(var.get(0)+" "+var.get(1)+" "+var.get(2)+" "+var.get(3)+" "+var.get(4));
-		}
+		}*/
 		
-		
+	
 
 
 		
 		
 	}
 
+	
 }
