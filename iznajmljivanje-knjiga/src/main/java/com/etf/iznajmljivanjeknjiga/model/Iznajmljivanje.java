@@ -1,9 +1,14 @@
 package com.etf.iznajmljivanjeknjiga.model;
 
+import javax.persistence.Entity;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
 
+
+@Entity
 @Document(collection = "iznajmljivanje-knjiga")
 public class Iznajmljivanje {
 
