@@ -52,11 +52,12 @@ public class clanarinaController {
 		Clanarina p = service.edit(request);
 		return p;
 	}
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	@Transactional
 	public void deleteClanarina(@PathVariable final Long id) throws ApiException{
 		service.delete(id);
 	}
+	
 	
 	
 	
