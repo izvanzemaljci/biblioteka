@@ -1,11 +1,18 @@
 package com.etf.editzaposlenika;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Repository;
 
+import com.etf.editzaposlenika.model.Zaposlenik;
+import com.etf.editzaposlenika.repository.EditZaposlenikaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -14,31 +21,16 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 @SpringBootApplication
-public class EditZaposlenikaApplication {
-
-public static MongoDatabase database;
+public class EditZaposlenikaApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		
-		MongoClient mongoClient =  MongoClients.create(
-				 "mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority");
-		 MongoDatabase database = mongoClient.getDatabase("biblioteka");
-		MongoCollection<Document> collection = database.getCollection("edit-zaposlenika");
-		Zaposlenik k2 = new Zaposlenik("2", "4", "Neko", "2020", "2020");
-		
-		ObjectMapper oMapper = new ObjectMapper();
-	    Document user= new Document( oMapper.convertValue(k2, Map.class));
-		collection.insertOne(user);
-		
-		MongoCursor<Document> doc=collection.find().iterator() ;   
-		while(doc.hasNext()) {
-	    	ArrayList<Object> var=new ArrayList<>(doc.next().values());
-	    	System.out.println(var.get(0));
-	    	System.out.println(var.get(1));
-	    	System.out.println(var.get(2));
-	    	System.out.println(var.get(3));
-		}
-		
+		SpringApplication.run(EditZaposlenikaApplication.class, args);
 	}
+	
 
+	@Override
+	public void run(String... args) throws Exception {
+
+	}
 }
