@@ -2,7 +2,6 @@ package com.etf.iznajmljivanjeknjiga.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ public class IznajmljivanjeKnjigaService {
 	}
 
 	public IznajmljivanjeEntity findById(Long id) {
-		Optional<IznajmljivanjeEntity> r = iznajmljivanjeKnjigaRepository.findById(id);
 		return iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity());
 	}
 
