@@ -8,9 +8,11 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.CommandLineRunner;
 
-import com.etf.editknjiga.Knjiga;
-import com.etf.editknjiga.Autor;
+import com.etf.editknjiga.model.Autor;
+import com.etf.editknjiga.model.Knjiga;
+import com.etf.editknjiga.EditKnjigaApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -19,11 +21,14 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 @SpringBootApplication
-public class EditKnjigaApplication {
+public class EditKnjigaApplication implements CommandLineRunner {
 	@Autowired
 	public static MongoDatabase database;
 
 	public static void main(String[] args) {
+		SpringApplication.run(EditKnjigaApplication.class, args);
+		
+/*		
 		MongoClient mongoClient =  MongoClients.create("mongodb+srv://sanja:borkvOCiBpguBQtt@cluster0.7prvw.mongodb.net/biblioteka?retryWrites=true&w=majority");
 		MongoDatabase database = mongoClient.getDatabase("biblioteka");
 		MongoCollection<Document> connectionKnjiga = database.getCollection("knjiga");
@@ -46,6 +51,7 @@ public class EditKnjigaApplication {
 			connectionAutor.insertOne(new Document(oMapper.convertValue(i, Map.class)));
 		});
 		
+		
 		System.out.println("Knjiga");
 		MongoCursor<Document> knjiga=connectionKnjiga.find().iterator();
 		while(knjiga.hasNext()) {
@@ -58,12 +64,17 @@ public class EditKnjigaApplication {
 		while(autor.hasNext()) {
 			ArrayList<Object> var =new ArrayList<> (autor.next().values());
 			System.out.println(var.get(0)+" "+var.get(1)+" "+var.get(2)+" "+var.get(3)+" "+var.get(4));
+			
+			*/
+	}
+		@Override
+		public void run(String... args) throws Exception {
 		}
 		
 		
 	}
 
-}
+
 
 
 

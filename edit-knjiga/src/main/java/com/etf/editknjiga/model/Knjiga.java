@@ -1,10 +1,14 @@
-package com.etf.editknjiga;
+package com.etf.editknjiga.model;
 
+import org.bson.types.ObjectId;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "edit-knjiga")
 public class Knjiga {
 	@Id
+	private ObjectId objectId;
     public Long id;
     public String naziv;
     public String zanr;

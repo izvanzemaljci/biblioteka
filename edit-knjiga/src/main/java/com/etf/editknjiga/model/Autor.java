@@ -1,10 +1,15 @@
-package com.etf.editknjiga;
+package com.etf.editknjiga.model;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
 
+@Document(collection = "kopija-knjige")
 public class Autor {
+	
 	@Id
+	private ObjectId objectId;
     public Long id;
     public String ime;
     public String prezime;
