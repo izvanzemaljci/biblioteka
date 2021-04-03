@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etf.iznajmljivanjeknjiga.dto.IznajmljivanjeRequest;
+import com.etf.iznajmljivanjeknjiga.exception.ApiRequestException;
 import com.etf.iznajmljivanjeknjiga.model.IznajmljivanjeEntity;
 import com.etf.iznajmljivanjeknjiga.repository.IznajmljivanjeKnjigaRepository;
 import com.etf.iznajmljivanjeknjiga.validation.IznajmljivanjeKnjigaValidation;
@@ -28,7 +29,7 @@ public class IznajmljivanjeKnjigaService {
 		if (validation.checkIfExists(id)) {
 			return iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity());
 		}
-		return new IznajmljivanjeEntity();
+		throw new ApiRequestException("Iznjmljivanje knjige with id:" + id + " does not exist.");
 
 	}
 
