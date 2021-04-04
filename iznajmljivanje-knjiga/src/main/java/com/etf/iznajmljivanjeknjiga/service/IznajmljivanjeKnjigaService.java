@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etf.iznajmljivanjeknjiga.dto.IznajmljivanjeRequest;
-import com.etf.iznajmljivanjeknjiga.exception.ApiRequestException;
 import com.etf.iznajmljivanjeknjiga.model.IznajmljivanjeEntity;
 import com.etf.iznajmljivanjeknjiga.repository.IznajmljivanjeKnjigaRepository;
 import com.etf.iznajmljivanjeknjiga.validation.IznajmljivanjeKnjigaValidation;
@@ -26,53 +25,45 @@ public class IznajmljivanjeKnjigaService {
 	}
 
 	public IznajmljivanjeEntity findById(Long id) {
-		if (validation.checkIfExists(id)) {
-			return iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity());
-		}
-		throw new ApiRequestException("Iznjmljivanje knjige with id:" + id + " does not exist.");
-
+		validation.checkIfExists(id);
+		return iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity());
 	}
 
 	public IznajmljivanjeEntity create(IznajmljivanjeRequest request) {
-		if (validation.validateCreateRequest(request)) {
-			return iznajmljivanjeKnjigaRepository.save(
-					new IznajmljivanjeEntity(request.getId(), request.getIdKorisnika(), request.getIdKopijaKnjige(),
-							request.getDatumIznajmljivanja(), request.getIdUposlenika(), request.getPlatiti()));
-		}
-		return null;
+		validation.validateCreateRequest(request);
+		return iznajmljivanjeKnjigaRepository
+				.save(new IznajmljivanjeEntity(request.getId(), request.getIdKorisnika(), request.getIdKopijaKnjige(),
+						request.getDatumIznajmljivanja(), request.getIdUposlenika(), request.getPlatiti()));
 
 	}
 
 	public IznajmljivanjeEntity edit(IznajmljivanjeRequest request) {
-		if (validation.validateEditRequest(request)) {
-			IznajmljivanjeEntity entity = iznajmljivanjeKnjigaRepository.findById(request.getId())
-					.orElse(new IznajmljivanjeEntity());
-			if (request.getDatumIznajmljivanja() != null) {
-				entity.setDatumIznajmljivanja(LocalDate.parse(request.getDatumIznajmljivanja()));
-			}
-			if (request.getIdKopijaKnjige() != null) {
-				entity.setIdKopijaKnjige(request.getIdKopijaKnjige());
-			}
-			if (request.getIdKorisnika() != null) {
-				entity.setIdKorisnika(request.getIdKorisnika());
-			}
-			if (request.getIdUposlenika() != null) {
-				entity.setIdUposlenika(request.getIdUposlenika());
-			}
-			if (request.getPlatiti() != null) {
-				entity.setPlatiti(request.getPlatiti());
-			}
-			return iznajmljivanjeKnjigaRepository.save(entity);
+		validation.validateEditRequest(request);
+		IznajmljivanjeEntity entity = iznajmljivanjeKnjigaRepository.findById(request.getId())
+				.orElse(new IznajmljivanjeEntity());
+		if (request.getDatumIznajmljivanja() != null) {
+			entity.setDatumIznajmljivanja(LocalDate.parse(request.getDatumIznajmljivanja()));
 		}
-		return null;
+		if (request.getIdKopijaKnjige() != null) {
+			entity.setIdKopijaKnjige(request.getIdKopijaKnjige());
+		}
+		if (request.getIdKorisnika() != null) {
+			entity.setIdKorisnika(request.getIdKorisnika());
+		}
+		if (request.getIdUposlenika() != null) {
+			entity.setIdUposlenika(request.getIdUposlenika());
+		}
+		if (request.getPlatiti() != null) {
+			entity.setPlatiti(request.getPlatiti());
+		}
+		return iznajmljivanjeKnjigaRepository.save(entity);
 
 	}
 
 	public void delete(Long id) {
-		if (validation.checkIfExists(id)) {
-			iznajmljivanjeKnjigaRepository
-					.delete(iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity()));
-		}
+		validation.checkIfExists(id);
+		iznajmljivanjeKnjigaRepository
+				.delete(iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity()));
 
 	}
 }
