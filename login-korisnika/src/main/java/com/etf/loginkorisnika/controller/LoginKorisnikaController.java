@@ -31,31 +31,31 @@ public class LoginKorisnikaController {
 		return service.getAll();
 	}
 	
-	@GetMapping("/get-by-username/{username}")
+	@GetMapping("/u/{username}")
 	public Korisnik getByUsername(@PathVariable(value = "username") String username) {
 		return service.getByUsername(username);
 	}
 	
-	@GetMapping("/get-by-id/{id_user}")
-	public Korisnik getById(@PathVariable(value = "id_user") Long id_user) {
-		return service.getById(id_user);
+	@GetMapping("/{id}")
+	public Korisnik getById(@PathVariable(value = "id") Long id) {
+		return service.getById(id);
 	}
 	
-	@PutMapping("/edit/{id_user}")
-	public Korisnik edit(@PathVariable(value = "id_user") Long id_user, @RequestBody Korisnik korisnik) {
-		korisnik.setId_user(id_user);
+	@PutMapping("/{id}")
+	public Korisnik edit(@PathVariable(value = "id") Long id, @RequestBody Korisnik korisnik) {
+		korisnik.setId(id);
 		Korisnik k = service.edit(korisnik);
 		return k;
 	}
 	
-	@PostMapping("add-korisnik")
+	@PostMapping()
 	public Korisnik addNewKorisnik(@RequestBody Korisnik korisnik) {
 		service.addNewKorisnik(korisnik);
 		return korisnik;
 	}
 	
-	@DeleteMapping("/delete/{id_user}")
- 	public void delete(@PathVariable(value = "id_user") Long id_user) {
- 		service.delete(id_user);
+	@DeleteMapping("/{id}")
+ 	public void delete(@PathVariable(value = "id") Long id) {
+ 		service.delete(id);
  	}
 }

@@ -13,28 +13,27 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Korisnik {
 
     @Id
-    public ObjectId id;
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    public Long id_user;
+    public Long _id;
 	public String username;
     public String password;
     public Long role;
 
     public Korisnik() {}
 
-    public Korisnik(Long id_user, String username, String password, Long role) {
+    public Korisnik(Long id, String username, String password, Long role) {
         super();
+        this._id = id;
         this.username = username;
         this.password = password;
         this.role = role;
     }
     
-    public Long getId_user() {
-		return id_user;
+    public Long getId() {
+		return _id;
 	}
 
-	public void setId_user(Long id_user) {
-		this.id_user = id_user;
+	public void setId(Long id) {
+		this._id = id;
 	}
 
     public String getUsername() {

@@ -34,12 +34,12 @@ public class LoginKorisnikaService {
 		repository.save(korisnik);
 	}
 
-	public void delete(Long id_user) {
-		repository.delete(repository.findById(id_user).orElse(new Korisnik()));
+	public void delete(Long id) {
+		repository.delete(repository.findById(id).orElse(new Korisnik()));
 	}
 
 	public Korisnik edit(Korisnik korisnik) {
-		Korisnik k = repository.findById(korisnik.getId_user())
+		Korisnik k = repository.findById(korisnik.getId())
  				.orElse(new Korisnik());
 		if(korisnik.getPassword() != null) {
 			k.setPassword(korisnik.getPassword());
@@ -47,8 +47,8 @@ public class LoginKorisnikaService {
 		if(korisnik.getUsername() != null) {
 			k.setUsername(korisnik.getUsername());
 		}
-		if(korisnik.getId_user() != null) {
-			k.setId_user(korisnik.getId_user());
+		if(korisnik.getId() != null) {
+			k.setId(korisnik.getId());
 		}
 		if(korisnik.getRole() != null) {
 			k.setRole(korisnik.getRole());
