@@ -51,35 +51,3 @@ public class ClanarinaTest  {
 	
 }
 
-
-
-/*@RunWith(SpringRunner.class) 
-@WebMvcTest
-@AutoConfigureMockMvc
-public class ClanarinaTest {
-	@MockBean
-    private ClanarinaRepository clanarinaRepository;
-    
-	@MockBean
-    private KorisnikRepository korisnikRepository;
-	
-    @Autowired
-    clanarinaController ClanarinaController;
-
-    @Autowired
-    private MockMvc mockMvc;
-    
-    @Test
-    public void getRequestKorisnik() throws Exception {
-        MediaType textPlainUtf8 = new MediaType(MediaType.TEXT_PLAIN, Charset.forName("UTF-8"));
-        String korisnik = "{\"ime\": \"Almasa\", \"prezime\" : \"Festa\"}";
-        mockMvc.perform(MockMvcRequestBuilders.post("/korisnik/0")
-          .content(korisnik)
-          .contentType(MediaType.APPLICATION_JSON_UTF8))
-          .andExpect(MockMvcResultMatchers.status().isOk())
-          .andExpect(MockMvcResultMatchers.content()
-            .contentType(textPlainUtf8));
-    }
-
-    
-}*/
