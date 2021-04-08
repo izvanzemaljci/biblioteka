@@ -46,9 +46,7 @@ public class LoginKorisnikaValidation {
 			errorMessage += "Username must not be empty. /r/n";
 		if(request.getPassword() == "")
 			errorMessage += "Password must not be empty. /r/n";
-		if(request.getRole() == null)
-			errorMessage += "Role must not be empty. /r/n";
-		if(request.getRole() < 0L || request.getRole() > 1L)
+		if(request.getRole() != null && (request.getRole() < 0L || request.getRole() > 1L))
 			errorMessage += "Invalid role value. /r/n";
 		if (errorMessage != "")
 			throw new ApiRequestException(errorMessage);

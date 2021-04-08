@@ -15,7 +15,9 @@ public class Korisnik {
     public String password;
     public Long role;
 
-    public Korisnik() {}
+    public Korisnik() {
+    	super();
+    }
 
     public Korisnik(Long id, String username, String password, Long role) {
         super();
