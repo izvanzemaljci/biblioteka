@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.etf.editzaposlenika.dto.EditRequest;
 import com.etf.editzaposlenika.repository.EditZaposlenikaRepository;
+import com.etf.editzaposlenika.exception.ApiRequestException;
 
 @Service
 public class EditZaposlenikaValidation {
@@ -16,20 +17,30 @@ public class EditZaposlenikaValidation {
 	@Autowired
 	private EditZaposlenikaRepository repository;
 	
-	public boolean checkIfExists(Long _id) {
-		return repository.existsById(_id);
+	public void checkIfExists(Long _id) {
+		if (!repository.existsById(_id)) {
+			throw new ApiRequestException("Worker with id:" + _id + " does not exist.");
+		}
 	}
 	
-	public boolean validateCreateRequest(EditRequest request) {
+	public void validateCreateRequest(EditRequest request) {
+		String errorMessage = "";
 		if(request.getId() < 0L || request.getId_user() < 0L)
-			return false;
-		if(checkIfExists(request.getId()))
-			return false;
+			errorMessage += "Numeric values must be greater then 0. /r/n";
+		if(repository.existsById(request.getId()))
+			errorMessage += "Worker with id:" + request.getId() + " already exists. /r/n";
+		if(repository.existsById(request.getId_user()))
+			errorMessage += "Worker with user id:" + request.getId_user() + " already exists. /r/n";
+		if(request.getId() == null)
+			errorMessage += "Id must not be null. /r/n";
+		if(request.getId_user() == null) 
+			errorMessage += "User id must not be null. /r/n";
 		if(!validateDate(request.getDateOfBirth())) 
-			return false;
+			errorMessage += "Date of birth is not valid. /r/n";
 		if(!validateDate(request.getDateOfEmployment()))
-			return false;
-		return true;
+			errorMessage += "Date of employment is not valid. /r/n";
+		if (errorMessage != "")
+			throw new ApiRequestException(errorMessage);
 	}
 		
 	private boolean validateDate(LocalDate date) {
@@ -42,16 +53,19 @@ public class EditZaposlenikaValidation {
         return valid;
 	}
 	
-	public boolean validateEditRequest(EditRequest request) {
-		if(request.getId() == null && !checkIfExists(request.getId()))
-			return false;
-		if(request.getId_user() == null && !checkIfExists(request.getId_user())) 
-			return false;
+	public void validateEditRequest(EditRequest request) {
+		String errorMessage = "";
+		checkIfExists(request.getId());
+		if(request.getId() == null && !repository.existsById(request.getId()))
+			errorMessage += "Worker with id:" + request.getId() + " does not exist. /r/n";
+		if(request.getId_user() == null && !repository.existsById(request.getId_user())) 
+			errorMessage += "User with id:" + request.getId_user() + " does not exist. /r/n";
 		if(request.getDateOfBirth() == null && !validateDate(request.getDateOfBirth()))
-			return false;
+			errorMessage += "Date of birth is not valid. /r/n";
 		if(request.getDateOfEmployment() == null && !validateDate(request.getDateOfEmployment()))
-			return false;
-		return true;
+			errorMessage += "Date of employment is not valid. /r/n";
+		if (errorMessage != "")
+			throw new ApiRequestException(errorMessage);
 	}
 	
 }

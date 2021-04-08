@@ -33,21 +33,17 @@ public class EditZaposlenikaService {
 	}
 
 	public Zaposlenik getById(Long _id) {
-		if (validation.checkIfExists(_id)) {
-			return repository.findById(_id).orElse(new Zaposlenik());
-		}
-		throw new ApiRequestException("Edit zaposlenika s id: " + _id + "ne postoji.");
+		validation.checkIfExists(_id);
+		return repository.findById(_id).orElse(new Zaposlenik());
 	}
 
 	public Zaposlenik addNewZaposlenik(EditRequest request) {
-		if (validation.validateCreateRequest(request)) {
-			return repository.save(new Zaposlenik(request.getId(), request.getId_user(), request.getName(), request.getDateOfBirth(), request.getDateOfEmployment()));
-		}
-		return new Zaposlenik();
+		validation.validateCreateRequest(request);
+		return repository.save(new Zaposlenik(request.getId(), request.getId_user(), request.getName(), request.getDateOfBirth(), request.getDateOfEmployment()));	
 	}
 
 	public Zaposlenik edit(EditRequest request) {
-		if (validation.validateEditRequest(request)) {
+		validation.validateEditRequest(request);
 			Zaposlenik z = repository.findById(request.getId()).orElse(new Zaposlenik());
 			if (request.getDateOfBirth() != null) {
 				z.setDateOfBirth(request.getDateOfBirth());
@@ -65,12 +61,10 @@ public class EditZaposlenikaService {
 				z.setId(request.getId());
 			}
 			return repository.save(z);
-		}
-		return null;
 	}
 
 	public void delete(Long _id) {
-		if (validation.checkIfExists(_id))
-			repository.delete(repository.findById(_id).orElse(new Zaposlenik()));
+		validation.checkIfExists(_id);
+		repository.delete(repository.findById(_id).orElse(new Zaposlenik()));
 	}
 }
