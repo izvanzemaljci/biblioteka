@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.etf.loginkorisnika.dto.LoginRequest;
 import com.etf.loginkorisnika.model.Korisnik;
 import com.etf.loginkorisnika.service.LoginKorisnikaService;
 
@@ -42,16 +43,16 @@ public class LoginKorisnikaController {
 	}
 	
 	@PutMapping("/{id}")
-	public Korisnik edit(@PathVariable(value = "id") Long id, @RequestBody Korisnik korisnik) {
-		korisnik.setId(id);
-		Korisnik k = service.edit(korisnik);
+	public Korisnik edit(@PathVariable(value = "id") Long id, @RequestBody LoginRequest request) {
+		request.setId(id);
+		Korisnik k = service.edit(request);
 		return k;
 	}
 	
 	@PostMapping()
-	public Korisnik addNewKorisnik(@RequestBody Korisnik korisnik) {
-		service.addNewKorisnik(korisnik);
-		return korisnik;
+	public Korisnik addNewKorisnik(@RequestBody LoginRequest request) {
+		Korisnik k = service.addNewKorisnik(request);
+		return k;
 	}
 	
 	@DeleteMapping("/{id}")

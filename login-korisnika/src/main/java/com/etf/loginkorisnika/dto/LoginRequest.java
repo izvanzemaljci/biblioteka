@@ -1,36 +1,27 @@
-package com.etf.loginkorisnika.model;
+package com.etf.loginkorisnika.dto;
 
-import javax.persistence.Entity;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Entity
-@Document(collection="login-korisnika")
-public class Korisnik {
-
-    @Id
-    public Long _id;
+public class LoginRequest {
+    public Long id;
 	public String username;
     public String password;
     public Long role;
 
-    public Korisnik() {}
+    public LoginRequest() {}
 
-    public Korisnik(Long id, String username, String password, Long role) {
+    public LoginRequest(Long id, String username, String password, Long role) {
         super();
-        this._id = id;
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
     }
     
     public Long getId() {
-		return _id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this._id = id;
+		this.id = id;
 	}
 
     public String getUsername() {
@@ -56,10 +47,4 @@ public class Korisnik {
     public void setRole(Long role) {
         this.role = role;
     }
-
-    @Override
-    public String toString() {
-        return "Username=" + username; 
-    }
-    
 }
