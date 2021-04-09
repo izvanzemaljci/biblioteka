@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.etf.iznajmljivanjeknjiga.dto.IznajmljivanjeRequest;
 import com.etf.iznajmljivanjeknjiga.model.IznajmljivanjeEntity;
 import com.etf.iznajmljivanjeknjiga.repository.IznajmljivanjeKnjigaRepository;
+import com.etf.iznajmljivanjeknjiga.validation.IznajmljivanjeKnjigaValidation;
 
 @Service
 public class IznajmljivanjeKnjigaService {
@@ -16,15 +17,20 @@ public class IznajmljivanjeKnjigaService {
 	@Autowired
 	private IznajmljivanjeKnjigaRepository iznajmljivanjeKnjigaRepository;
 
+	@Autowired
+	private IznajmljivanjeKnjigaValidation validation;
+
 	public List<IznajmljivanjeEntity> findAll() {
 		return iznajmljivanjeKnjigaRepository.findAll();
 	}
 
 	public IznajmljivanjeEntity findById(Long id) {
+		validation.checkIfExists(id);
 		return iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity());
 	}
 
 	public IznajmljivanjeEntity create(IznajmljivanjeRequest request) {
+		validation.validateCreateRequest(request);
 		return iznajmljivanjeKnjigaRepository
 				.save(new IznajmljivanjeEntity(request.getId(), request.getIdKorisnika(), request.getIdKopijaKnjige(),
 						request.getDatumIznajmljivanja(), request.getIdUposlenika(), request.getPlatiti()));
@@ -32,6 +38,7 @@ public class IznajmljivanjeKnjigaService {
 	}
 
 	public IznajmljivanjeEntity edit(IznajmljivanjeRequest request) {
+		validation.validateEditRequest(request);
 		IznajmljivanjeEntity entity = iznajmljivanjeKnjigaRepository.findById(request.getId())
 				.orElse(new IznajmljivanjeEntity());
 		if (request.getDatumIznajmljivanja() != null) {
@@ -54,6 +61,7 @@ public class IznajmljivanjeKnjigaService {
 	}
 
 	public void delete(Long id) {
+		validation.checkIfExists(id);
 		iznajmljivanjeKnjigaRepository
 				.delete(iznajmljivanjeKnjigaRepository.findById(id).orElse(new IznajmljivanjeEntity()));
 

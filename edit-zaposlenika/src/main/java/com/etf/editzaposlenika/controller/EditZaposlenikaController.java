@@ -1,7 +1,6 @@
 package com.etf.editzaposlenika.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,10 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.etf.editzaposlenika.dto.EditRequest;
 import com.etf.editzaposlenika.model.Zaposlenik;
 import com.etf.editzaposlenika.service.EditZaposlenikaService;
 
@@ -34,31 +32,31 @@ public class EditZaposlenikaController {
 		return service.getAll();
 	}
 	
-	@GetMapping("/get-by-name/{name}")
+	@GetMapping("/n/{name}")
 	public Zaposlenik getByName(@PathVariable(value = "name") String name) {
 		return service.getByName(name);
 	}
 	
-	@GetMapping("/get-by-id/{id_worker}")
-	public Zaposlenik getById(@PathVariable(value = "id_worker") Long id_worker) {
-		return service.getById(id_worker);
+	@GetMapping("/{id}")
+	public Zaposlenik getById(@PathVariable(value = "id") Long id) {
+		return service.getById(id);
 	}
 	
-	@PutMapping("/edit/{id_worker}")
-	public Zaposlenik edit(@PathVariable(value = "id_worker") Long id_worker, @RequestBody Zaposlenik zaposlenik) {
-		zaposlenik.setId_worker(id_worker);
-		Zaposlenik z = service.edit(zaposlenik);
+	@PutMapping("/{id}")
+	public Zaposlenik edit(@PathVariable(value = "id") Long id, @RequestBody EditRequest request) {
+		request.setId(id);
+		Zaposlenik z = service.edit(request);
 		return z;
 	}
 	
-	@PostMapping("add-zaposlenik")
-	public Zaposlenik addNewZaposlenik(@RequestBody Zaposlenik zaposlenik) {
-		service.addNewZaposlenik(zaposlenik);
-		return zaposlenik;
+	@PostMapping()
+	public Zaposlenik addNewZaposlenik(@RequestBody EditRequest request) {
+		Zaposlenik z = service.addNewZaposlenik(request);
+		return z; 
 	}
 	
-	@DeleteMapping("/delete/{id_worker}")
- 	public void delete(@PathVariable(value = "id_worker") Long id_worker) {
- 		service.delete(id_worker);
+	@DeleteMapping("/{id}")
+ 	public void delete(@PathVariable(value = "id") Long id) {
+ 		service.delete(id);
  	}
 }

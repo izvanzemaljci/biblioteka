@@ -1,5 +1,6 @@
 package com.etf.clanarina.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.GeneratedValue;

@@ -2,7 +2,6 @@ package com.etf.iznajmljivanjeknjiga.model;
 
 import javax.persistence.Entity;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,14 +10,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ReviewEntity {
 
 	@Id
-	private ObjectId objectId;
-	private Long id;
+	private Long _id;
 	private Long idIznajmljivanja;
 	private Double ocjena;
 
 	public ReviewEntity(Long id, Long idIznajmljivanja, Double ocjena) {
 		super();
-		this.id = id;
+		this._id = id;
 		this.idIznajmljivanja = idIznajmljivanja;
 		this.ocjena = ocjena;
 	}
@@ -28,11 +26,11 @@ public class ReviewEntity {
 	}
 
 	public Long getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this._id = id;
 	}
 
 	public Long getIdIznajmljivanja() {

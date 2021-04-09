@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,8 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class KopijaKnjigeEntity {
 
 	@Id
-	private ObjectId objectId;
-	private Long id;
+	private Long _id;
 	private Long idKnjige;
 	private String izdavac;
 	private LocalDate datumIzdavanja;
@@ -25,7 +23,7 @@ public class KopijaKnjigeEntity {
 
 	public KopijaKnjigeEntity(Long id, Long idKnjige, String izdavac, LocalDate datumIzdavanja) {
 		super();
-		this.id = id;
+		this._id = id;
 		this.idKnjige = idKnjige;
 		this.izdavac = izdavac;
 		this.datumIzdavanja = datumIzdavanja;
@@ -39,11 +37,11 @@ public class KopijaKnjigeEntity {
 	}
 
 	public Long getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this._id = id;
 	}
 
 	public Long getIdKnjige() {

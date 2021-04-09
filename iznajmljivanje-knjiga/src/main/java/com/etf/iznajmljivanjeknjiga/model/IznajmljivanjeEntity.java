@@ -2,15 +2,16 @@ package com.etf.iznajmljivanjeknjiga.model;
 
 import java.time.LocalDate;
 
-import org.bson.types.ObjectId;
+import javax.persistence.Entity;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Entity
 @Document(collection = "iznajmljivanje-knjiga")
 public class IznajmljivanjeEntity {
 	@Id
-	private ObjectId objectId;
-	private Long id;
+	private Long _id;
 	private Long idKorisnika;
 	private Long idKopijaKnjige;
 	private LocalDate datumIznajmljivanja;
@@ -24,7 +25,7 @@ public class IznajmljivanjeEntity {
 	public IznajmljivanjeEntity(Long id, Long idKorisnika, Long idKopijaKnjige, String datumIznajmljivanja,
 			Long idUposlenika, Double platiti) {
 		super();
-		this.id = id;
+		this._id = id;
 		this.idKorisnika = idKorisnika;
 		this.idKopijaKnjige = idKopijaKnjige;
 		this.datumIznajmljivanja = LocalDate.parse(datumIznajmljivanja);
@@ -43,11 +44,11 @@ public class IznajmljivanjeEntity {
 	}
 
 	public Long getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this._id = id;
 	}
 
 	public Long getIdKorisnika() {

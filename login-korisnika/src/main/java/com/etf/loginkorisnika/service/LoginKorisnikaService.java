@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.etf.loginkorisnika.dto.LoginRequest;
 import com.etf.loginkorisnika.model.Korisnik;
 import com.etf.loginkorisnika.repository.LoginKorisnikaRepository;
+import com.etf.loginkorisnika.validation.LoginKorisnikaValidation;
 
 @Service
 public class LoginKorisnikaService {
 
 	private final LoginKorisnikaRepository repository;
+	
+	@Autowired
+	private LoginKorisnikaValidation validation;
 	
 	@Autowired
 	public LoginKorisnikaService(LoginKorisnikaRepository repository) {
@@ -26,32 +31,35 @@ public class LoginKorisnikaService {
 		return repository.findByUsername(username);
 	}
 
-	public Korisnik getById(Long id) {
-		return repository.findById(id).orElse(new Korisnik());
+	public Korisnik getById(Long _id) {
+		return repository.findById(_id).orElse(new Korisnik());
 	}
 
-	public void addNewKorisnik(Korisnik korisnik) {
-		repository.save(korisnik);
+	public Korisnik addNewKorisnik(LoginRequest request) {
+		validation.validateCreateRequest(request);
+		return repository.save(new Korisnik(request.getId(), request.getUsername(), request.getPassword(), request.getRole()));
 	}
 
-	public void delete(Long id_user) {
-		repository.delete(repository.findById(id_user).orElse(new Korisnik()));
+	public void delete(Long _id) {
+		validation.checkIfExists(_id);
+		repository.delete(repository.findById(_id).orElse(new Korisnik()));
 	}
 
-	public Korisnik edit(Korisnik korisnik) {
-		Korisnik k = repository.findById(korisnik.getId_user())
+	public Korisnik edit(LoginRequest request) {
+		validation.validateEditRequest(request);
+		Korisnik k = repository.findById(request.getId())
  				.orElse(new Korisnik());
-		if(korisnik.getPassword() != null) {
-			k.setPassword(korisnik.getPassword());
+		if(request.getPassword() != null) {
+			k.setPassword(request.getPassword());
 		}
-		if(korisnik.getUsername() != null) {
-			k.setUsername(korisnik.getUsername());
+		if(request.getUsername() != null) {
+			k.setUsername(request.getUsername());
 		}
-		if(korisnik.getId_user() != null) {
-			k.setId_user(korisnik.getId_user());
+		if(request.getId() != null) {
+			k.setId(request.getId());
 		}
-		if(korisnik.getRole() != null) {
-			k.setRole(korisnik.getRole());
+		if(request.getRole() != null) {
+			k.setRole(request.getRole());
 		}
  		return repository.save(k);	
 	}

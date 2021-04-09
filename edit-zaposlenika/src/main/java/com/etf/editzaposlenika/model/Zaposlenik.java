@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Document(collection="edit-zaposlenika")
 public class Zaposlenik {
 	@Id
-	private ObjectId objectId;
+	private Long _id;
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_worker;
 	private Long id_user;
 	private String name;
 	
@@ -31,21 +29,21 @@ public class Zaposlenik {
 	public Zaposlenik() {
 	}
 
-	public Zaposlenik(Long id_worker, Long id_user, String name, LocalDate dateOfBirth, LocalDate dateOfEmployment) {
+	public Zaposlenik(Long _id, Long id_user, String name, LocalDate dateOfBirth, LocalDate dateOfEmployment) {
 		super();
-		this.id_worker = id_worker;
+		this._id = _id;
 		this.id_user = id_user;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfEmployment = dateOfEmployment;
 	}
 
-	public Long getId_worker() {
-		return id_worker;
+	public Long getId() {
+		return _id;
 	}
 
-	public void setId_worker(Long id_worker) {
-		this.id_worker = id_worker;
+	public void setId(Long _id) {
+		this._id = _id;
 	}
 
 	public Long getId_user() {
@@ -88,12 +86,12 @@ public class Zaposlenik {
 		if (!(o instanceof Zaposlenik))
 			return false;
 		Zaposlenik zaposlenik = (Zaposlenik) o;
-		return Objects.equals(this.id_worker, zaposlenik.id_worker) && Objects.equals(this.name, zaposlenik.name)
+		return Objects.equals(this._id, zaposlenik._id) && Objects.equals(this.name, zaposlenik.name)
 				&& Objects.equals(this.dateOfBirth, zaposlenik.dateOfBirth);
 	}
 
 	@Override
 	public String toString() {
-		return "Zaposlenik, id= " + id_worker + ", ime=" + name;
+		return "Zaposlenik, id= " + _id + ", ime=" + name;
 	}
 }
