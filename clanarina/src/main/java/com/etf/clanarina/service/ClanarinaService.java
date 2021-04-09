@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etf.clanarina.dto.ClanarinaRequest;
-import com.etf.clanarina.errorHandling.ApiException;
+import com.etf.clanarina.exception.ApiException;
 import com.etf.clanarina.model.Clanarina;
 import com.etf.clanarina.repository.ClanarinaRepository;
 import com.etf.clanarina.validation.clanarinaValidator;
@@ -32,15 +32,16 @@ public class ClanarinaService {
 		return ClanarinaRepository.findById(id).orElse(new Clanarina());
 	}
 
-	public Clanarina create(ClanarinaRequest request) throws ApiException{
-		if(validator.validateRequest(request))
-			return ClanarinaRepository.save(new Clanarina(request.getId(), request.getIdKorisnika(), request.getDatumUpisa(), request.getPlatiti()));
-		return null;
+	public Clanarina create(ClanarinaRequest request){
+		validator.validateCreateRequest(request);
+		return ClanarinaRepository.save(new Clanarina(request.getId(), request.getIdKorisnika(), request.getDatumUpisa(), request.getPlatiti()));
+		
 
 	}
 
 	public Clanarina edit(ClanarinaRequest request) {
-		if(!validator.validateRequest(request)) return null;
+		validator.validateEditRequest(request);
+		
 		Clanarina entity = ClanarinaRepository.findById(request.getId()).orElse(new Clanarina());
 		if (request.getDatumUpisa() != null) {
 			entity.setDatumUpisa(request.getDatumUpisa());
@@ -58,6 +59,7 @@ public class ClanarinaService {
 	}
 
 	public void delete(Long id) {
+		validator.checkIfExists(id);
 		ClanarinaRepository.delete(ClanarinaRepository.findById(id).orElse(new Clanarina()));
 
 	}

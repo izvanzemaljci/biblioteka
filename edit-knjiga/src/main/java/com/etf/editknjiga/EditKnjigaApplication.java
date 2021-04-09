@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 
 import com.etf.editknjiga.model.Autor;
 import com.etf.editknjiga.model.Knjiga;
+import com.etf.editknjiga.repository.KnjigaRepository;
 import com.etf.editknjiga.EditKnjigaApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;

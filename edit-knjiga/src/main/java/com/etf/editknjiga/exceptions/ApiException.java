@@ -1,4 +1,4 @@
-package com.etf.clanarina.errorHandling;
+package com.etf.editknjiga.exceptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import org.springframework.util.StringUtils;
 
 public class ApiException extends RuntimeException {
+	
 	public ApiException(Class clazz, String... searchParamsMap) {
         super(ApiException.generateMessage(clazz.getSimpleName(), toMap(String.class, String.class, searchParamsMap)));
     }
@@ -27,4 +28,10 @@ public class ApiException extends RuntimeException {
                         Map::putAll);
     }
 
+
 }
+
+
+
+
+	

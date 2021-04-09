@@ -1,7 +1,7 @@
 package com.etf.clanarina.controller;
 
 import com.etf.clanarina.dto.ClanarinaRequest;
-import com.etf.clanarina.errorHandling.ApiException;
+import com.etf.clanarina.exception.ApiException;
 import com.etf.clanarina.model.Clanarina;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,7 +30,7 @@ public class clanarinaController {
 	private ClanarinaService service;
 	
 	@GetMapping("/find")
-	public List<Clanarina> findAll() throws ApiException{
+	public List<Clanarina> findAll() {
 		return service.findAll();
 	}
 	
@@ -54,7 +54,7 @@ public class clanarinaController {
 	}
 	@DeleteMapping("/{id}")
 	@Transactional
-	public void deleteClanarina(@PathVariable final Long id) throws ApiException{
+	public void deleteClanarina(@PathVariable final Long id) {
 		service.delete(id);
 	}
 	
