@@ -37,7 +37,9 @@ public class Clanarina {
 	private String datumUpisa;
 	private Double platiti;
 	
-	
+	public Clanarina() {
+		super();
+	}
 	public Clanarina(Long id, Long idKorisnika,  String datumUpisa, Double platiti) {
 		super();
 		this.id = id;
