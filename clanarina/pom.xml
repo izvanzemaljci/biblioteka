@@ -33,15 +33,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.jongsoft.lang</groupId>
-			<artifactId>collections</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.11.2</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -110,11 +103,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-			</plugin>
+			
 		</plugins>
 	</build>
 
