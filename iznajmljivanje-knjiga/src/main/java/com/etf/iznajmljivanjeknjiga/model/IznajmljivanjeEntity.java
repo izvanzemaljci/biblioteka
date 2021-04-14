@@ -33,6 +33,17 @@ public class IznajmljivanjeEntity {
 		this.platiti = platiti;
 	}
 
+	public IznajmljivanjeEntity(Long id, Long idKorisnika, Long idKopijaKnjige, LocalDate datumIznajmljivanja,
+			Long idUposlenika, Double platiti) {
+		super();
+		this._id = id;
+		this.idKorisnika = idKorisnika;
+		this.idKopijaKnjige = idKopijaKnjige;
+		this.datumIznajmljivanja = datumIznajmljivanja;
+		this.idUposlenika = idUposlenika;
+		this.platiti = platiti;
+	}
+
 	public IznajmljivanjeEntity(Long idKorisnika, Long idKopijaKnjige, String datumIznajmljivanja, Long idUposlenika,
 			Double platiti) {
 		super();
@@ -91,4 +102,15 @@ public class IznajmljivanjeEntity {
 		this.platiti = platiti;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		IznajmljivanjeEntity that = (IznajmljivanjeEntity) o;
+		return _id.equals(that._id) && idKorisnika.equals(that.idKorisnika)
+				&& idKopijaKnjige.equals(that.idKopijaKnjige) && datumIznajmljivanja.equals(that.datumIznajmljivanja)
+				&& idUposlenika.equals(that.idUposlenika) && platiti.equals(that.platiti);
+	}
 }
