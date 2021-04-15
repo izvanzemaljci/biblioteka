@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Zaposlenik {
 	@Id
 	private Long _id;
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id_user;
 	private String name;
 	
