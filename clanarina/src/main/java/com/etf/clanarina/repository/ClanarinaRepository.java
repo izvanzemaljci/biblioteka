@@ -12,7 +12,7 @@ import com.etf.clanarina.model.Clanarina;
 import com.etf.clanarina.model.Korisnik;
 
 public interface ClanarinaRepository extends MongoRepository<Clanarina, Long>{
-	public List<Clanarina> findAll();
+	/*public List<Clanarina> findAll();
 	
 	public Clanarina findByObjectId(Long id);
 	
@@ -25,6 +25,6 @@ public interface ClanarinaRepository extends MongoRepository<Clanarina, Long>{
 	public void delete(Long id);
 	
 	@Query("{'id':?0}")
-	public Clanarina update(final Long id, Clanarina clanarina);	
+	public Clanarina update(final Long id, Clanarina clanarina);*/	
 
 }

@@ -14,10 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Clanarina {
 
 	@Id
-	private ObjectId objectId;
-
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long _id;
 
 	@NotNull(message = "IDkorisnika can't be null")
 	private Long idKorisnika;
@@ -32,18 +29,18 @@ public class Clanarina {
 
 	public Clanarina(Long id, Long idKorisnika, String datumUpisa, Double platiti) {
 		super();
-		this.id = id;
+		this._id = id;
 		this.idKorisnika = idKorisnika;
 		this.datumUpisa = datumUpisa;
 		this.platiti = platiti;
 	}
 
 	public Long getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this._id = id;
 	}
 
 	public Long getIdKorisnika() {
@@ -68,6 +65,17 @@ public class Clanarina {
 
 	public void setPlatiti(Double platiti) {
 		this.platiti = platiti;
+	}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Clanarina that = (Clanarina) o;
+		return _id.equals(that._id) && idKorisnika.equals(that.idKorisnika)
+				&& datumUpisa.equals(that.datumUpisa)
+				&& platiti.equals(that.platiti);
 	}
 
 }

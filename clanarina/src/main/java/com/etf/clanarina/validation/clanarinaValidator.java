@@ -5,12 +5,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.etf.clanarina.dto.ClanarinaRequest;
 import com.etf.clanarina.exception.ApiRequestException;
 import com.etf.clanarina.repository.ClanarinaRepository;
 import com.etf.clanarina.repository.KorisnikRepository;
 
+@Service
 public class clanarinaValidator {
 	
 	@Autowired
