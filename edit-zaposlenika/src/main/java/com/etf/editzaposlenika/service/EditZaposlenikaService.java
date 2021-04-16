@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etf.editzaposlenika.dto.EditRequest;
+import com.etf.editzaposlenika.dto.Korisnik;
 import com.etf.editzaposlenika.feign.FeignClient;
 import com.etf.editzaposlenika.model.Zaposlenik;
 import com.etf.editzaposlenika.repository.EditZaposlenikaRepository;
@@ -28,7 +29,6 @@ public class EditZaposlenikaService {
 	}
 
 	public List<Zaposlenik> getAll() {
-		System.out.println(feignClient.getAll());
 		return repository.findAll();
 	}
 
@@ -71,5 +71,9 @@ public class EditZaposlenikaService {
 	public void delete(Long _id) {
 		validation.checkIfExists(_id);
 		repository.delete(repository.findById(_id).orElse(new Zaposlenik()));
+	}
+
+	public List<Korisnik> login() {
+		return feignClient.getAll();
 	}
 }

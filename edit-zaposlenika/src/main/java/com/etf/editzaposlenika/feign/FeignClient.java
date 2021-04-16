@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.etf.editzaposlenika.dto.Korisnik;
 
-@org.springframework.cloud.openfeign.FeignClient(url = "https://localhost:8686/", name = "login-korisnika")
+@org.springframework.cloud.openfeign.FeignClient(name = "login-korisnika")
 public interface FeignClient {
 
-	@GetMapping()
+	@GetMapping("login")
 	public List<Korisnik> getAll();
 
 }
