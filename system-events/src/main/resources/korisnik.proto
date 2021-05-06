@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.etf.system-events.grpc";
+option java_package = "com.etf.grpc";
 
 service korisnik{
     rpc login(LoginRequest)  returns (APIResponse);
@@ -10,6 +10,7 @@ service korisnik{
 message LoginRequest{
        string username = 1 ;
        string password = 2 ;
+       int64 role = 3 ;
 }
 
 message APIResponse{
