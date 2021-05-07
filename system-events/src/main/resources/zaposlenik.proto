@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "com.etf.grpc";
+
+service zaposlenik{
+    rpc addZaposlenik(AddZaposlenikRequest)  returns (ZaposlenikAPIResponse);
+}
+
+message AddZaposlenikRequest{
+       string name = 1 ;
+       string dateOfBirth = 2 ;
+       string dateOfEmployment = 3 ;
+}
+
+message ZaposlenikAPIResponse{
+      string responsemessage = 1;
+      int32  responseCode  = 2;
+}

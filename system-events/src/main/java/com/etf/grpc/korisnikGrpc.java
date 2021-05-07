@@ -28,21 +28,21 @@ public final class korisnikGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.LoginRequest,
-      com.etf.grpc.Korisnik.APIResponse> getLoginMethod;
+      com.etf.grpc.Korisnik.KorisnikAPIResponse> getLoginMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "login",
       requestType = com.etf.grpc.Korisnik.LoginRequest.class,
-      responseType = com.etf.grpc.Korisnik.APIResponse.class,
+      responseType = com.etf.grpc.Korisnik.KorisnikAPIResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.LoginRequest,
-      com.etf.grpc.Korisnik.APIResponse> getLoginMethod() {
-    io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.LoginRequest, com.etf.grpc.Korisnik.APIResponse> getLoginMethod;
+      com.etf.grpc.Korisnik.KorisnikAPIResponse> getLoginMethod() {
+    io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.LoginRequest, com.etf.grpc.Korisnik.KorisnikAPIResponse> getLoginMethod;
     if ((getLoginMethod = korisnikGrpc.getLoginMethod) == null) {
       synchronized (korisnikGrpc.class) {
         if ((getLoginMethod = korisnikGrpc.getLoginMethod) == null) {
           korisnikGrpc.getLoginMethod = getLoginMethod = 
-              io.grpc.MethodDescriptor.<com.etf.grpc.Korisnik.LoginRequest, com.etf.grpc.Korisnik.APIResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.etf.grpc.Korisnik.LoginRequest, com.etf.grpc.Korisnik.KorisnikAPIResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "korisnik", "login"))
@@ -50,7 +50,7 @@ public final class korisnikGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.etf.grpc.Korisnik.LoginRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.etf.grpc.Korisnik.APIResponse.getDefaultInstance()))
+                  com.etf.grpc.Korisnik.KorisnikAPIResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new korisnikMethodDescriptorSupplier("login"))
                   .build();
           }
@@ -60,21 +60,21 @@ public final class korisnikGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.Empty,
-      com.etf.grpc.Korisnik.APIResponse> getLogoutMethod;
+      com.etf.grpc.Korisnik.KorisnikAPIResponse> getLogoutMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "logout",
       requestType = com.etf.grpc.Korisnik.Empty.class,
-      responseType = com.etf.grpc.Korisnik.APIResponse.class,
+      responseType = com.etf.grpc.Korisnik.KorisnikAPIResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.Empty,
-      com.etf.grpc.Korisnik.APIResponse> getLogoutMethod() {
-    io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.Empty, com.etf.grpc.Korisnik.APIResponse> getLogoutMethod;
+      com.etf.grpc.Korisnik.KorisnikAPIResponse> getLogoutMethod() {
+    io.grpc.MethodDescriptor<com.etf.grpc.Korisnik.Empty, com.etf.grpc.Korisnik.KorisnikAPIResponse> getLogoutMethod;
     if ((getLogoutMethod = korisnikGrpc.getLogoutMethod) == null) {
       synchronized (korisnikGrpc.class) {
         if ((getLogoutMethod = korisnikGrpc.getLogoutMethod) == null) {
           korisnikGrpc.getLogoutMethod = getLogoutMethod = 
-              io.grpc.MethodDescriptor.<com.etf.grpc.Korisnik.Empty, com.etf.grpc.Korisnik.APIResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.etf.grpc.Korisnik.Empty, com.etf.grpc.Korisnik.KorisnikAPIResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "korisnik", "logout"))
@@ -82,7 +82,7 @@ public final class korisnikGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.etf.grpc.Korisnik.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.etf.grpc.Korisnik.APIResponse.getDefaultInstance()))
+                  com.etf.grpc.Korisnik.KorisnikAPIResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new korisnikMethodDescriptorSupplier("logout"))
                   .build();
           }
@@ -121,14 +121,14 @@ public final class korisnikGrpc {
     /**
      */
     public void login(com.etf.grpc.Korisnik.LoginRequest request,
-        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.APIResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.KorisnikAPIResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLoginMethod(), responseObserver);
     }
 
     /**
      */
     public void logout(com.etf.grpc.Korisnik.Empty request,
-        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.APIResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.KorisnikAPIResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLogoutMethod(), responseObserver);
     }
 
@@ -139,14 +139,14 @@ public final class korisnikGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 com.etf.grpc.Korisnik.LoginRequest,
-                com.etf.grpc.Korisnik.APIResponse>(
+                com.etf.grpc.Korisnik.KorisnikAPIResponse>(
                   this, METHODID_LOGIN)))
           .addMethod(
             getLogoutMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.etf.grpc.Korisnik.Empty,
-                com.etf.grpc.Korisnik.APIResponse>(
+                com.etf.grpc.Korisnik.KorisnikAPIResponse>(
                   this, METHODID_LOGOUT)))
           .build();
     }
@@ -173,7 +173,7 @@ public final class korisnikGrpc {
     /**
      */
     public void login(com.etf.grpc.Korisnik.LoginRequest request,
-        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.APIResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.KorisnikAPIResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request, responseObserver);
     }
@@ -181,7 +181,7 @@ public final class korisnikGrpc {
     /**
      */
     public void logout(com.etf.grpc.Korisnik.Empty request,
-        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.APIResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.KorisnikAPIResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLogoutMethod(), getCallOptions()), request, responseObserver);
     }
@@ -207,14 +207,14 @@ public final class korisnikGrpc {
 
     /**
      */
-    public com.etf.grpc.Korisnik.APIResponse login(com.etf.grpc.Korisnik.LoginRequest request) {
+    public com.etf.grpc.Korisnik.KorisnikAPIResponse login(com.etf.grpc.Korisnik.LoginRequest request) {
       return blockingUnaryCall(
           getChannel(), getLoginMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.etf.grpc.Korisnik.APIResponse logout(com.etf.grpc.Korisnik.Empty request) {
+    public com.etf.grpc.Korisnik.KorisnikAPIResponse logout(com.etf.grpc.Korisnik.Empty request) {
       return blockingUnaryCall(
           getChannel(), getLogoutMethod(), getCallOptions(), request);
     }
@@ -240,7 +240,7 @@ public final class korisnikGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.etf.grpc.Korisnik.APIResponse> login(
+    public com.google.common.util.concurrent.ListenableFuture<com.etf.grpc.Korisnik.KorisnikAPIResponse> login(
         com.etf.grpc.Korisnik.LoginRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request);
@@ -248,7 +248,7 @@ public final class korisnikGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.etf.grpc.Korisnik.APIResponse> logout(
+    public com.google.common.util.concurrent.ListenableFuture<com.etf.grpc.Korisnik.KorisnikAPIResponse> logout(
         com.etf.grpc.Korisnik.Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getLogoutMethod(), getCallOptions()), request);
@@ -277,11 +277,11 @@ public final class korisnikGrpc {
       switch (methodId) {
         case METHODID_LOGIN:
           serviceImpl.login((com.etf.grpc.Korisnik.LoginRequest) request,
-              (io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.APIResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.KorisnikAPIResponse>) responseObserver);
           break;
         case METHODID_LOGOUT:
           serviceImpl.logout((com.etf.grpc.Korisnik.Empty) request,
-              (io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.APIResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.etf.grpc.Korisnik.KorisnikAPIResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();

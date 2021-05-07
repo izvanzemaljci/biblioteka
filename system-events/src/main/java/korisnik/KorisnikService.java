@@ -1,7 +1,7 @@
 package korisnik;
 
-import com.etf.grpc.Korisnik.APIResponse;
 import com.etf.grpc.Korisnik.Empty;
+import com.etf.grpc.Korisnik.KorisnikAPIResponse;
 import com.etf.grpc.Korisnik.LoginRequest;
 import com.etf.grpc.korisnikGrpc.korisnikImplBase;
 
@@ -10,13 +10,13 @@ import io.grpc.stub.StreamObserver;
 public class KorisnikService extends korisnikImplBase {
 
 	@Override
-	public void login(LoginRequest request, StreamObserver<APIResponse> responseObserver) {
+	public void login(LoginRequest request, StreamObserver<KorisnikAPIResponse> responseObserver) {
 		System.out.println("Login:");
 		
 		String username = request.getUsername();
 		String password = request.getPassword();
 		
-		APIResponse.Builder response = APIResponse.newBuilder();
+		KorisnikAPIResponse.Builder response = KorisnikAPIResponse.newBuilder();
 		if(username.equals(password)) {
 			response.setResponseCode(0).setResponsemessage("SUCCESS");
 		} else {
@@ -28,7 +28,7 @@ public class KorisnikService extends korisnikImplBase {
 	}
 
 	@Override
-	public void logout(Empty request, StreamObserver<APIResponse> responseObserver) {
+	public void logout(Empty request, StreamObserver<KorisnikAPIResponse> responseObserver) {
 		// TODO Auto-generated method stub
 		super.logout(request, responseObserver);
 	}

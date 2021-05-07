@@ -3,8 +3,8 @@ syntax = "proto3";
 option java_package = "com.etf.grpc";
 
 service korisnik{
-    rpc login(LoginRequest)  returns (APIResponse);
-    rpc logout(Empty)  returns (APIResponse);
+    rpc login(LoginRequest)  returns (KorisnikAPIResponse);
+    rpc logout(Empty)  returns (KorisnikAPIResponse);
 }
 
 message LoginRequest{
@@ -13,7 +13,7 @@ message LoginRequest{
        int64 role = 3 ;
 }
 
-message APIResponse{
+message KorisnikAPIResponse{
       string responsemessage = 1;
       int32  responseCode  = 2;
 }
