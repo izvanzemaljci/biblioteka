@@ -37,8 +37,8 @@ public class EditZaposlenikaService {
 	}
 
 	public Zaposlenik getById(Long _id) {
-		validation.checkIfExists(_id);
-		return repository.findById(_id).orElse(new Zaposlenik());
+//		validation.checkIfExists(_id);
+		return repository.findById(_id).orElse(null);
 	}
 
 	public Zaposlenik addNewZaposlenik(EditRequest request) {

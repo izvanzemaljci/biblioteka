@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.etf.iznajmljivanjeknjiga.dto.IznajmljivanjeRequest;
 import com.etf.iznajmljivanjeknjiga.exception.ApiRequestException;
+import com.etf.iznajmljivanjeknjiga.feign.LoginFeignClient;
+import com.etf.iznajmljivanjeknjiga.feign.ZaposleniciFeignClient;
 import com.etf.iznajmljivanjeknjiga.model.KopijaKnjigeEntity;
 import com.etf.iznajmljivanjeknjiga.repository.IznajmljivanjeKnjigaRepository;
 import com.etf.iznajmljivanjeknjiga.repository.KopijaKnjigeRepository;
@@ -23,6 +25,12 @@ public class IznajmljivanjeKnjigaValidation {
 	@Autowired
 	private ReviewRepository reviewRepository;
 
+	@Autowired
+	private ZaposleniciFeignClient zaposleniciFeignClient;
+
+	@Autowired
+	private LoginFeignClient loginFeignClient;
+
 	public void checkIfExists(Long id) {
 		if (!repository.existsById(id)) {
 			throw new ApiRequestException("Iznjmljivanje knjige with id:" + id + " does not exist.");
@@ -35,6 +43,12 @@ public class IznajmljivanjeKnjigaValidation {
 		if (request.getId() < 0L || request.getIdKorisnika() < 0L || request.getIdKopijaKnjige() < 0L
 				|| request.getIdUposlenika() < 0L || request.getPlatiti() < 0.0)
 			errorMessage += "Numeric values must be greater then 0. /r/n";
+		if (request.getIdKorisnika() != null && loginFeignClient.getById(request.getIdKorisnika()) == null) {
+			errorMessage += "Korisnik with id:" + request.getIdKopijaKnjige() + " does not exist. /r/n";
+		}
+		if (request.getIdUposlenika() != null && zaposleniciFeignClient.getById(request.getIdUposlenika()) != null) {
+			errorMessage += "Zaposlenik with id:" + request.getIdKopijaKnjige() + " does not exist. /r/n";
+		}
 		if (!kopijaKnjigeRepository.existsById(request.getIdKopijaKnjige())) {
 			errorMessage += "Kopoja Knjige with id:" + request.getIdKopijaKnjige() + " does not exist. /r/n";
 		}
@@ -62,6 +76,12 @@ public class IznajmljivanjeKnjigaValidation {
 
 		if (request.getIdKopijaKnjige() != null && !kopijaKnjigeRepository.existsById(request.getIdKopijaKnjige())) {
 			errorMessage += "Kopoja Knjige with id:" + request.getIdKopijaKnjige() + " does not exist. /r/n";
+		}
+		if (request.getIdKorisnika() != null && loginFeignClient.getById(request.getIdKorisnika()) == null) {
+			errorMessage += "Korisnik with id:" + request.getIdKorisnika() + " does not exist. /r/n";
+		}
+		if (request.getIdUposlenika() != null && zaposleniciFeignClient.getById(request.getIdUposlenika()) == null) {
+			errorMessage += "Zaposlenik with id:" + request.getIdUposlenika() + " does not exist. /r/n";
 		}
 		if (request.getDatumIznajmljivanja() != null && validateDate(request.getDatumIznajmljivanja())) {
 			errorMessage += "Datum izdavanja is not valid. /r/n";

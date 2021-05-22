@@ -11,16 +11,12 @@ import com.etf.clanarina.dto.ClanarinaRequest;
 import com.etf.clanarina.exception.ApiRequestException;
 import com.etf.clanarina.feign.LoginFeignClient;
 import com.etf.clanarina.repository.ClanarinaRepository;
-import com.etf.clanarina.repository.KorisnikRepository;
 
 @Service
 public class clanarinaValidator {
 
 	@Autowired
 	private ClanarinaRepository repository;
-
-	@Autowired
-	private KorisnikRepository korisnikRepository;
 
 	@Autowired
 	private LoginFeignClient loginFeignClient;
