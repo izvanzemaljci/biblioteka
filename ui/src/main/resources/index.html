@@ -1,26 +1,19 @@
+
 <html>
-<body ng-app="myApp" ng-controller="mainCtrl">
-<script src="angular.min.js"></script>
-<script src="angular-resource.min.js"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<script>
-var app = angular.module('myApp', ["ngResource"]);
+    <title>Spring Security OAuth Example</title>
 
-app.controller('mainCtrl', function($scope,$resource,$http) {
-    $scope.foo = {id:0 , name:"sample foo"};
-    $scope.foos = $resource("/foos/:fooId",{fooId:'@id'});
-    
-    $scope.getFoo = function(){
-        $scope.foo = $scope.foos.get({fooId:$scope.foo.id});
-    }  
-});
-</script>
+</head>
 
-<div>
-    <h1>Foo Details</h1>
-    <span>{{foo.id}}</span>
-    <span>{{foo.name}}</span>
-    <a href="#" ng-click="getFoo()">New Foo</a>
-</div>
+
+<body>
+
+    <h1>Spring Security OAuth Example</h1>
+
+    <a href="secure">Login to OAuth here</a>
+
 </body>
+
 </html>
