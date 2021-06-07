@@ -1,63 +1,60 @@
 package com.etf.editknjiga.model;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.bson.types.ObjectId;
 
-@Document(collection = "kopija-knjige")
+@Document(collection = "autor")
 public class Autor {
-	
+
 	@Id
-	private ObjectId objectId;
-    public Long id;
-    public String ime;
-    public String prezime;
-    public String opis;
-   
 
-    public Autor() {
-    	super();
-    }
+	public Long _id;
+	public String ime;
+	public String prezime;
+	public String opis;
 
-    public Autor(Long id, String ime, String prezime, String opis) {
-        super();
-        this.id = id;
-        this.ime = ime;
-        this.prezime = prezime;
-        this.opis = opis;
-    }
+	public Autor() {
+		super();
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Autor(Long id, String ime, String prezime, String opis) {
+		super();
+		this._id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.opis = opis;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return _id;
+	}
 
-    public String getIme() {
-        return ime;
-    }
+	public void setId(Long id) {
+		this._id = id;
+	}
 
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
+	public String getIme() {
+		return ime;
+	}
 
-    public String getPrezime() {
-        return prezime;
-    }
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
-    }
+	public String getPrezime() {
+		return prezime;
+	}
 
-    public String getOpis() {
-        return opis;
-    }
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
 
-    public void setOpis(String opis) {
-        this.opis = opis;
-    }
-    
+	public String getOpis() {
+		return opis;
+	}
+
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
+
 }

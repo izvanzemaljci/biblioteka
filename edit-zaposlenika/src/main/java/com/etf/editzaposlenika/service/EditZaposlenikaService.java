@@ -29,6 +29,7 @@ public class EditZaposlenikaService {
 	}
 
 	public List<Zaposlenik> getAll() {
+
 		return repository.findAll();
 	}
 

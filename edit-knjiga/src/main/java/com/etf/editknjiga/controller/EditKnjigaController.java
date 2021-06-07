@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etf.editknjiga.model.Knjiga;
+import com.etf.editknjiga.model.KnjigaExtended;
 import com.etf.editknjiga.service.EditKnjigaService;
 
 @CrossOrigin(maxAge = 3600)
@@ -23,7 +24,7 @@ public class EditKnjigaController {
 
 	@GetMapping()
 	@CrossOrigin(origins = "http://localhost:4200")
-	public List<Knjiga> findAll() {
+	public List<KnjigaExtended> findAll() {
 		return service.findAll();
 	}
 

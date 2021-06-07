@@ -3,6 +3,7 @@ package com.etf.editzaposlenika.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.etf.editzaposlenika.dto.Korisnik;
 import com.etf.editzaposlenika.model.Zaposlenik;
 import com.etf.editzaposlenika.service.EditZaposlenikaService;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(path = "/zaposlenici")
 public class EditZaposlenikaController {
@@ -28,6 +30,7 @@ public class EditZaposlenikaController {
 		this.service = service;
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping()
 	public List<Zaposlenik> getAll() {
 		return service.getAll();
