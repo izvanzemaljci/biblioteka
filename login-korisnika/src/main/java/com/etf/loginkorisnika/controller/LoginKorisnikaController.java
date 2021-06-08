@@ -1,9 +1,9 @@
 package com.etf.loginkorisnika.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +17,7 @@ import com.etf.loginkorisnika.dto.LoginRequest;
 import com.etf.loginkorisnika.model.Korisnik;
 import com.etf.loginkorisnika.service.LoginKorisnikaService;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(path = "/login")
 public class LoginKorisnikaController {
@@ -34,6 +35,7 @@ public class LoginKorisnikaController {
 	}
 
 	@GetMapping("/u/{username}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Korisnik getByUsername(@PathVariable(value = "username") String username) {
 		return service.getByUsername(username);
 	}
@@ -50,16 +52,17 @@ public class LoginKorisnikaController {
 		return k;
 	}
 
-	@PostMapping()
-	public Korisnik addNewKorisnik(@RequestBody List<HashMap<String, String>> request) {
-		System.out.println("LoginKorisnikaController.addNewKorisnik()");
-		return null;
-	}
 //	@PostMapping()
-//	public Korisnik addNewKorisnik(@RequestBody LoginRequest request) {
-//		Korisnik k = service.addNewKorisnik(request);
-//		return k;
+//	public Korisnik addNewKorisnik(@RequestBody List<HashMap<String, String>> request) {
+//		System.out.println("LoginKorisnikaController.addNewKorisnik()");
+//		return null;
 //	}
+	@PostMapping()
+	@CrossOrigin(origins = "http://localhost:4200")
+	public Korisnik addNewKorisnik(@RequestBody LoginRequest request) {
+		Korisnik k = service.addNewKorisnik(request);
+		return k;
+	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable(value = "id") Long id) {
